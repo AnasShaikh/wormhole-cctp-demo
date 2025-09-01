@@ -6,14 +6,14 @@ import { getSigner } from './helpers/helpers';
 (async function () {
 	const wh = await wormhole('Testnet', [evm, solana]);
 
-	const sendChain = wh.getChain('Avalanche');
-	const rcvChain = wh.getChain('Sepolia');
+	const sendChain = wh.getChain('Sepolia');
+	const rcvChain = wh.getChain('ArbitrumSepolia');
 
 	// Get signer from local key
 	const source = await getSigner(sendChain);
 	const destination = await getSigner(rcvChain);
 
-	const amt = 1_000_001n;
+	const amt = 2_000_000n; // 2 USDC to cover relayer fees
 
 	// If set to false the user will have to manually approve the transfer (refer to the circle-manual-transfer.ts file)
 	const automatic = true;
